@@ -1,0 +1,8 @@
+{
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "file": "neoden4_generator.log"
+    },
+    "ignored_pcb_features": ["TP", "DNP", "DNE", "HDR", "Hole", "Panel", "Edge", "MH", "MOUNTHOLE"]
+  }
