@@ -40,6 +40,7 @@ Neoden4Assembly/
 
 ### 2. Launch Application
 1. Important Change file paths at the following line locations:76, 790 and 1133
+2. Depending on your os you may need to change the screen size on line 3000 
 ```bash
 python3 N4_CSV_Creator_v2i.py
 ```
