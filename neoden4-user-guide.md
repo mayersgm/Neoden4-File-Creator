@@ -41,7 +41,7 @@ Neoden4Assembly/
 ### 2. Launch Application
 1. Important Change file paths at the following line locations:73,790 and 1133
 ```bash
-python3 N4_CSV_Creator_v2x.py
+python3 N4_CSV_Creator_v2i.py
 ```
 
 ### 3. PCR File Splitting
