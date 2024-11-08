@@ -39,7 +39,7 @@ Neoden4Assembly/
 5. Save and close the file
 
 ### 2. Launch Application
-1. Important Change file paths at the following line locations:73,790 and 1133
+1. Important Change file paths at the following line locations:76, 790 and 1133
 ```bash
 python3 N4_CSV_Creator_v2i.py
 ```
