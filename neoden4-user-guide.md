@@ -31,7 +31,7 @@ Neoden4Assembly/
 
 ## Step-by-Step Instructions
 
-### 1. PCR File Preparation
+### 1. PCR File Preparation (See PCR_TEST.csv)
 1. Export your Allegro PCR file as a CSV file
 2. Create a new directory under `/Neoden4Assembly/PCB_Assembly/` with your board name
 3. Save the CSV file in this directory: i.e `/Neoden4Assembly/PCB_Assembly/BoardName/BoardName'
