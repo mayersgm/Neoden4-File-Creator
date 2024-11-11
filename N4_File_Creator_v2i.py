@@ -15,12 +15,11 @@ from enum import Enum
 from collections import defaultdict, Counter
 from datetime import datetime
 #import time
-#from Neoden4_PCR_Splitter import PCR_File_Splitter
-#from Assembly_file_splitter import AssemblyFileSplitter
 from typing import Dict, List, Tuple, Optional, Callable  # Add Callable here
 
 FEEDER_20_MAX_COUNT = 4  # Define at class level
 
+# ---- Component Dynamic Status ----
 class PlacementResult(Enum):
     PLACED = 1
     ALREADY_PLACED = 2
