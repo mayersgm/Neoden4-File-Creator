@@ -12,7 +12,7 @@ The Neoden4 File Creator is a tool for preparing PCB assembly files for use with
 
 ## Prerequisites
 - Python 3.x installed
-- Required Python packages: pandas, numpy, tkinter
+- Required Python packages: pandas, numpy, tkinter (install under Python's environment structure)
 - PCR file exported from Allegro in CSV format
 - Access to Neoden4Assembly directory structure
 
