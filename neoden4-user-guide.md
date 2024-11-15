@@ -40,9 +40,9 @@ Neoden4Assembly/
 
 ### 2. Launch Application
 1. Important Change file paths at the following line locations:76, 790 and 1133
-2. Depending on your os or display, you may need to change the Gui window size on line 2831 ---> 'app = N4SortGUIApp("Neoden4 CSV Creator v2i", (width, hight))'
+2. Depending on your os or display, you may need to change the Gui window size on line 2831 ---> 'app = N4SortGUIApp("Neoden4 CSV Creator v2j", (width, hight))'
 ```bash
-python3 N4_CSV_Creator_v2i.py
+python3 N4_CSV_Creator_v2j.py
 ```
 
 ### 3. PCR File Splitting
