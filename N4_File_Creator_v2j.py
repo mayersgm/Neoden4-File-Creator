@@ -1680,14 +1680,6 @@ class PCBDataProcessor:
               # Log processing statistics before nozzle_feeder_assignments
             self.logger.info(f"Processed {pcb_df} components")
             
-            # First filter out fiducials from processing
-            pcb_df = pcb_df[
-                ~pcb_df['REFDES'].str.contains('|'.join("FID"), na=False, case=False)&
-                ~pcb_df['SYM_NAME'].str.contains('|'.join("FID"), na=False, case=False)
-                #~pcb_df['COMP_VALUE'].str.contains('|'.join("FID"), na=False, case=False)
-            ]
-             # Log processing statistics before nozzle_feeder_assignments
-            self.logger.info(f"Processed {pcb_df} components")
             
             # Calculate distances if XY_DIST is in sort columns
             if 'XY_DIST' in sort_config.get('columns', []):
@@ -1734,6 +1726,15 @@ class PCBDataProcessor:
             # Assign nozzles and feeders
 
             pcb_df = self.nozzle_feeder_assignment(pcr_path, pcb_df, n4_df)
+
+             # Filter out fiducials from processing
+            pcb_df = pcb_df[
+                ~pcb_df['REFDES'].str.contains("FID", na=False, case=True)&
+                ~pcb_df['SYM_NAME'].str.contains("FID", na=False, case=False)&
+                ~pcb_df['COMP_VALUE'].str.contains("FID", na=False, case=False)
+            ]
+             # Log processing statistics before nozzle_feeder_assignments
+            self.logger.info(f"Processed {pcb_df} components")
 
             # Adjust rotation after nozzle assignment
             pcb_df['SYM_ROTATE'] = pcb_df.apply(self.adjust_rotation, axis=1)
@@ -1816,6 +1817,10 @@ class PCBDataProcessor:
                 fiducial_pts_m, 
                 key=lambda point: math.sqrt(point[0]**2 + point[1]**2)
             )
+            self.logger.info(f"FIDUCIALS: TEMPLATE={fiducial_pts_mr}, PCB={fiducial_pts_i}")
+            self.logger.info(f"Processed {pcb_df} components")
+            print("Measured Fid", fiducial_pts_mr)
+            print("PCB Fid", fiducial_pts_i)
             
             # Get offset from first fiducial
             n4_offsetx = fiducial_pts_i[0][0]
