@@ -1,0 +1,26 @@
+﻿Footprint,Value,Pick height,Pick delay,Place Height,Place Delay,Vacuum detection,Threshold,Vision Alignment,Speed,Unnamed: 17,Unnamed: 18,Unnamed: 19,Unnamed: 20,Unnamed: 21,Unnamed: 22,Unnamed: 23,Unnamed: 24,Unnamed: 25,Unnamed: 26,Unnamed: 27,Unnamed: 28,Unnamed: 29
+CAP603,Footprint/Value,2.8,100,3,100,No,-40,1,80,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+CAP0402,Footprint/Value,2.1,100,2.7,100,No,-40,1,80,2,30,50,No,No,-40,-40,-40,-40,-1,-1,0,0
+RES603,Footprint/Value,2.2,100,2.6,100,No,-40,1,80,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+CAP1825,Footprint/Value,1,100,3.4,100,No,-40,1,80,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+SOD-123,Footprint/Value,2.1,100,3.1,100,No,-40,1,60,4,50,60,No,No,-40,-40,-40,-40,-1,-1,0,0
+SOT143B,Footprint/Value,2.4,100,2.6,100,No,-40,1,100,4,50,60,No,No,-40,-40,-40,-40,-1,-1,0,0
+SOT23-5,Footprint/Value,1.9,100,3,100,No,-40,1,80,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+SOT23-6,Footprint/Value,1.9,100,3,100,No,-40,1,100,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+QFN24,Footprint/Value,1.2,300,2.6,100,No,-40,1,100,8,50,60,No,No,-40,-40,-40,-40,-1,-1,0,0
+RES1206,Footprint/Value,2.2,100,2.3,100,No,-40,1,100,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+CAP2917,Footprint/Value,2.2,100,2.6,100,No,-40,1,100,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+QFN24,Footprint/Value,1.2,300,2.6,100,No,-40,1,100,8,50,60,No,No,-40,-40,-40,-40,-1,-1,0,0
+SOIC8,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+SOP65P640X120-16N,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+LEDC1608X80N,Footprint/Value,1.6,100,3,100,No,-40,1,80,4,50,80,No,No,-40,-40,-40,-40,-1,-1,0,0
+D0603,Footprint/Value,2.2,100,2.6,100,No,-40,1,100,4,50,30,No,No,-40,-40,-40,-40,-1,-1,0,0
+QFN12,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+QFN50P400X400X80-25N,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+QFN50P400X400X100-25N,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+TSSOP_20,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+TSSOP_16,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+TSSOP_8,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+24-TSSOP,Footprint/Value,2.6,60,3.4,100,No,-40,1,80,4,50,80,No,No,-40,-40,-40,-40,-1,-1,0,0
+TSSOP_24,Footprint/Value,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+SOT95P230X110-3N,Footprint/Value,2.2,100,3.7,100,No,-40,1,80,4,50,50,No,No,-40,-40,-40,-40,-1,-1,0,0

@@ -1,0 +1,22 @@
+{
+    "max_reels_per_file": 40,
+    "ignored_pcb_features": ["TP", "DNP", "DNE", "HDR", "Hole", "Panel", "Edge", "MH", "MOUNTHOLE"],
+    "logging": {
+      "level": "INFO",
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+      "file": "neoden4_generator.log"
+    },
+    "file_paths": {
+      "output_directory": "Z:/Users/godwinm.mayers/Neoden4Assembly/PCB_Assembly/GeneratedTemplates/"
+    },
+    "component_parameters": {
+      "default_pick_height": 2.2,
+      "default_place_height": 2.6,
+      "default_pick_delay": 100,
+      "default_place_delay": 100
+    },
+    "template_naming": {
+      "prefix": "Neoden4_Template_",
+      "use_timestamp": true
+    }
+  }
