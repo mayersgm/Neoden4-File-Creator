@@ -1,133 +1,146 @@
 # Neoden4 File Creator User Guide
 
-## Overview
-The Neoden4 File Creator is a tool for preparing PCB assembly files for use with Neoden4 pick-and-place machines. It processes PCR (Place Component Report) files into the necessary formats for both top and bottom assembly.
+    ## Overview
+    The Neoden4 File Creator is a tool for preparing PCB assembly files for use with Neoden4 pick-and-place machines.
+    It processes PCR (Place Component Report) files into the necessary formats for both top and bottom assembly.
 
-## Key Features
-- Automatic file splitting for top and bottom assembly
-- Component sorting with multiple options
-- Template file management
-- Fiducial handling
-- Manual placement identification
+    ## Key Features
+    • Automatic file splitting for top and bottom assembly
+    • Component sorting with multiple options
+    • Template file management
+    • Fiducial handling
+    • Manual placement identification
+    • Template Override optimization
+    • XY Offset correction for component positioning
 
-## Prerequisites
-- Python 3.x installed
-- Required Python packages: pandas, numpy, tkinter (install under Python's environment structure)
-- PCR file exported from Allegro in CSV format
-- Access to Neoden4Assembly directory structure
+    ## XY Offset Feature
+    The XY Offset feature helps correct component placement when positions are off by a consistent amount. 
+    This feature requires two steps:
 
-## Directory Structure
-```
-Neoden4Assembly/
-├── PCB_Assembly/
-│   └── BoardName/
-│       └── BOARD_NAME.csv
-├── pcr_files/
-│   ├── Component_Table.csv
-│   ├── Neoden4.csv
-│   └── configuration.json
-└── N4_CSV_Creator_v2a.py
-```
+    1. Measuring the Offset:
+    • Using the N4 PNP machine's camera system
+    • Aligning and marking the first component's actual position
+    • Exporting the measured position data
 
-## Step-by-Step Instructions
+    2. Applying the Correction:
+    • Using the exported file as input
+    • Calculating offset from mirror_create reference point
+    • Adjusting all subsequent component positions
+    • Generating a new file with corrected coordinates
 
-### 1. PCR File Preparation (See PCR_TEST.csv)
-1. Export your Allegro PCR file as a CSV file
-2. Create a new directory under `/Neoden4Assembly/PCB_Assembly/` with your board name
-3. Save the CSV file in this directory: i.e `/Neoden4Assembly/PCB_Assembly/BoardName/BoardName'
-4. **Important**: Open the CSV file and rename fiducial reference designators to FID1, FID2, etc.
-5. Save and close the file
+    The tool will automatically:
+    • Use the mirror_create position as the reference point
+    • Calculate the offset from the first component
+    • Apply this offset to all subsequent components
+    • Generate a new file with corrected positions
 
-### 2. Launch Application
-1. Important Change file paths at the following line locations:76, 790 and 1133
-2. Depending on your os or display, you may need to change the Gui window size on line 2831 ---> 'app = N4SortGUIApp("Neoden4 CSV Creator v2j", (width, hight))'
-```bash
-python3 N4_CSV_Creator_v2j.py
-```
+    ## Template Override Feature
+    • Optimizes component placement between top and bottom PCB loading
+    • Preserves matched components in original positions
+    • Sequentially fills unmatched positions
+    • Generates component replacement tracking
+    • Maintains all position and feeder data"""
 
-### 3. PCR File Splitting
-1. Click the "Split PCR" button
-2. Navigate to and select your PCR CSV file
-3. The tool will generate several files:
-   - Board assembly files:
-     * `BOARD_Topa.csv`
-     * `BOARD_Topb.csv`
-     * `BOARD_Bota.csv`
-     * `BOARD_Botb.csv`
-   - Template files:
-     * `Neoden4_TemplateBOARD_Topa.csv`
-     * `Neoden4_TemplateBOARD_Topb.csv`
-     * `Neoden4_TemplateBOARD_Bota.csv`
-     * `Neoden4_TemplateBOARD_Botb.csv`
-   - Manual placement files:
-     * `Manual_Placement_Top.csv`
-     * `Manual_Placement_Bot.csv`
+        # Content for Workflow tab
+        workflow_content = """# Working with Neoden4 File Creator
 
-### 4. Machine Calibration
-1. Place board on the Neoden4 machine
-2. Upload appropriate template file (Bota or Topa) via USB
-3. Use board fiducials to calibrate machine
-4. Save modified template with calibration data
-5. Export modified template to USB
-6. Copy modified template back to your board directory, replacing the original
+    ## Step 1: PCR File Preparation
+    1. Export Allegro PCR file as CSV
+    2. Create directory: /Neoden4Assembly/PCB_Assembly/BoardName/
+    3. Save CSV file in new directory
+    4. Rename fiducials to FID1, FID2, etc.
 
-### 5. Generate Placement File
-1. In the GUI, open the matching board file (`BOARD_Topa.csv` or `BOARD_Bota.csv`)
-   - The matching template should be automatically selected
-   - **For bottom assembly**: Enter the correct board width
-2. Select your preferred sorting options:
-   - Sort by Reference Designator
-   - Sort by XY Location
-   - Sort by Component Value
-   - Sort by Component Package
-3. Click "Generate CSV" button
-4. The tool will create `N4_BOARD_Topx.csv` or `N4_BOARD_Botx.csv`
+    ## Step 2: Measuring Initial Offset on N4 PNP Machine
+    Before applying XY offset correction, you need to measure the initial offset:
+    1. Load PCR file into N4 PNP machine
+    2. Select the first component and click align
+    3. Using the mouse, click the center of the component displayed in the camera view
+    4. Select save to store the measured position
+    5. Save and Export file to SD card
+    (This exported file will be used to implement the XY OFFSET correction)
 
-### 6. Component Management
-- Components not matching the Component Table will be moved to Manual_Placement file
-- Update Component Table (`/Neoden4Assembly/pcr_files/Component_Table.csv`) to include:
-  - Component footprint
-  - Reel size
-  - Component specifications
+    ## Step 3: Using XY Offset Correction
+    1. Click "Open PCR-file" and select your CSV file
+    2. When prompted to select Template file, click Cancel
+    (Template file is not needed for XY offset correction)
+    3. Click the "XY OFFSET" button
+    4. The system will:
+    • Find the reference position from mirror_create row
+    • Locate the first component after #SMD
+    • Calculate and apply the offset
+    • Create a new file with '_offset' suffix
+    5. Review the success message for:
+    • Number of modified positions
+    • Applied X and Y offsets
+    • Output file location
 
-## Common Issues and Solutions
+    ## Step 3: Additional Processing
+    1. Click 'Split PCR' for file splitting
+    2. Process template files as needed
+    3. Use Generate CSV for final output
 
-### Value Variations
-    Components that may need standardization:
+    ## Step 4: Generate Placement Files
+    1. Open PCB-file and select matching board file
+    2. For bottom assembly: Enter board width
+    3. Select sorting options:
+    • Reference Designator
+    • XY Location
+    • Component Value
+    • Component Package
+    4. Click "Generate CSV"
+    5. Review generated N4_BoardName_(Top/Bot) files"""
 
-    Resistors:
-    ✓ Correct: 10K
-    ✗ Fix: 10k, 10 kOhm, 10 KOhm
+        # Content for Troubleshooting tab
+        troubleshoot_content = """# Troubleshooting Guide
 
-    Other Components:
-    ✓ Correct: 100 Ohm
-    ✗ Fix: 100, 100 OHM, 100Ω
+    ## Initial Measurement on N4 PNP Machine
+    When measuring the initial offset:
+    • Ensure proper machine calibration before starting
+    • Use maximum zoom for precise component centering
+    • Double-check saved coordinates before exporting
+    • Keep the SD card handy for file transfer
 
-### Troubleshooting Tips
-1. Verify fiducial naming (FID1, FID2, etc.)
-2. Check board width for bottom assembly
-3. Ensure Component Table entries match your PCR file format
-4. Verify template file matches selected board side
+    ## Using the N4 PNP Machine
+    Tips for accurate offset measurement:
+    • Make sure the machine is properly calibrated before starting
+    • Use the camera's maximum zoom for precise component centering
+    • Verify the saved coordinates before exporting the file
+    • Keep track of which component was used for measurement
 
- ## Component Table Format
-    Required format:
-    Reel    Footprint	      Value	             Pick height	    Pick delay	    Place Height	    Place Delay  .....
-    8	CAP0603	    Footprint/Value	    2.8	            100	                        3                   100	     ......... 
-    8	CAP0402	    Footprint/Value	    2.1	            100                         2.7                 100	     .........
-    8	RES0603	    Footprint/Value	    2.2	            100                         2.6                 100	     .........	
-    8	SOD-123	    Footprint/Value	    2.1	            100	                        3.1                 100	     .........	
+    ## XY Offset Issues
+    Common error messages and solutions:
 
+    1. "Could not find 'mirror_create' row":
+    • Verify the file has a mirror_create row
+    • Check for correct formatting
+    • Ensure no extra spaces in cell values
 
-## Best Practices
-1. Maintain consistent component value formatting
-2. Regularly update Component Table
-3. Verify fiducial recognition before generating files
-4. Back up template files before machine calibration
-5. Double-check board width measurements
+    2. "Could not find first component position":
+    • Verify #SMD section exists
+    • Check component rows after #SMD
+    • Ensure X/Y values are valid numbers
 
+    3. General Best Practices:
+    • Always keep original files as backup
+    • Verify offsets in generated file
+    • Test with small batch first
+    • Document applied offsets
 
-## Support Files
+    ## Other Common Issues
+    • Missing template files
+    • Incorrect fiducial naming
+    • Board width errors
+    • Component table mismatches
+
+    ## Best Practices
+    1. Use consistent value formatting
+    2. Update Component Table regularly
+    3. Verify fiducial detection
+    4. Back up templates
+    5. Double-check measurements
+
+    ## Support Files
     Required files in pcr_files directory:
-    - Component_Table.csv
-    - Neoden4.csv
-    - configuration.json"""
+    • Component_Table.csv
+    • Neoden4.csv
+    • configuration.json"""
